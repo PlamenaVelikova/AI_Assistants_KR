@@ -90,3 +90,58 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+// Floating particles
+function createParticle() {
+    const particle = document.createElement("div");
+    particle.classList.add("particle");
+
+    document.querySelector(".particles").appendChild(particle);
+
+    const size = Math.random() * 6 + 2;
+
+    particle.style.width = size + "px";
+    particle.style.height = size + "px";
+
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.top = "100vh";
+
+    particle.style.opacity = Math.random();
+
+    particle.style.animationDuration = (Math.random() * 5 + 3) + "s";
+
+    setTimeout(() => {
+        particle.remove();
+    }, 8000);
+}
+
+setInterval(createParticle, 300);
+
+// 3D Tilt effect
+
+const cards = document.querySelectorAll(".card, .example-item");
+
+cards.forEach(card => {
+
+    card.addEventListener("mousemove", (e) => {
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (x - centerX) / -10;
+
+        card.style.transform =
+            `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0) rotateY(0)";
+    });
+
+});
