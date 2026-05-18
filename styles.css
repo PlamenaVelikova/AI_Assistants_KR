@@ -199,6 +199,11 @@ h1 {
     margin-left: 20px;
 }
 
+.card, .example-item {
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease;
+}
+
 /* Примери */
 .example-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -495,4 +500,49 @@ nav a.active::after {
     line-height: 1.5;
 
     color: rgba(255,255,255,0.9);
+}
+
+/* Particles background */
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background: var(--color-teal);
+    border-radius: 50%;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-120vh);
+    }
+}
+
+#hero {
+    background: linear-gradient(-45deg,
+        var(--color-teal),
+        var(--color-maroon),
+        var(--color-coral)
+    );
+
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
